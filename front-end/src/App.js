@@ -7,6 +7,7 @@ import CreatePost from './components/Posts/CreatePost/CreatePost';
 import PostList from './components/Posts/ViewPosts/PostList';
 import ViewDiscussion from './components/discussion/ViewDiscussion/ViewDiscussion';
 import DiscussionList from './components/discussion/DiscussionList/DiscussionList';
+import DiscussionCreate from './components/discussion/DiscussionCreate/DiscussionCreate';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,6 +35,7 @@ function App() {
             <Route path="/posts" element={<PostList/>}/>
             <Route path="/discussion/:id" element={<ViewDiscussion/>}/>
             <Route path="/discussion/lists" element={<DiscussionList/>}/>
+            <Route path="/discussion/create" element={<DiscussionCreate/>}/>
             {/* <Apps/> */}
           </>
         )}

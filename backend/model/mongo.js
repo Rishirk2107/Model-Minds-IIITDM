@@ -53,6 +53,10 @@ const DiscussionSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    discussioncontent:{
+        type:String,
+        required:true
+    },
     createdBy:{
         type:String,
         required:true
@@ -84,4 +88,4 @@ const DiscussionChatSchema=new mongoose.Schema({
 
 const DiscussionChat=mongoose.model("Chat",DiscussionChatSchema)
 
-module.exports=Posts
+module.exports={Posts,Discussion,DiscussionChat}

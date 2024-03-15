@@ -3,11 +3,32 @@ const bodyParser=require('body-parser');
 const cors=require("cors");
 const axios = require('axios');
 const multer = require('multer');
-const Posts=require("./backend/model/mongo")
+const {Posts,Discussion,DiscussionChat}=require("./backend/model/mongo")
 const {generateRandomString}=require("./backend/controller/generator");
+const dotenv=require("dotenv");
+const session=require("express-session")
+const MongoStore=require("connect-mongo");
+
+dotenv.config();
 
 const app=express();
 
+const mongoStore = new MongoStore({
+    mongoUrl: process.env.MONGO_URI, // Replace with connection string
+    ttl: 24 * 60 * 60, // Set session expiration to 24 hours (in seconds)
+    dbName: 'life_redemption', // Database name (same as connection string)
+    collection: "user_session"
+});
+
+app.use(
+    session({
+        secret: process.env.USER_SECRET_KEY, // Replace with a strong, unique secret key
+        resave: false,
+        saveUninitialized: true,
+        store: mongoStore,
+        cookie: { secure: true, maxAge: 24 * 60 * 60 * 1000 } // Set cookie expiration to 24 hours (in milliseconds)
+    })
+);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
@@ -73,8 +94,13 @@ app.post("/posts",async(req,res)=>{
 
 app.post("/discussion/:discussionid",(req,res)=>{
     const params=req.params.discussionid;
-    
-})
+
+});
+
+app.post("/create/discussion",(req,res)=>{
+    console.log(req.body);
+    res.json({"Message":req.body})
+});
 
 app.listen(5000,()=>{
     console.log("Server running at http://localhost:5000/");

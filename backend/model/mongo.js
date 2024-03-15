@@ -4,7 +4,24 @@ require("dotenv").config();
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
   useUnifiedTopology: true,
-})
+});
+
+const UserSchema=new mongoose.Schema({
+    username:{
+        type:String,
+        required:true,
+    },
+    email:{
+        type:String,
+        required:true
+    },
+    password:{
+        type:String,
+        required:true
+    }
+});
+
+const User=mongoose.model("User",UserSchema);
 
 const PostsSchema=new mongoose.Schema({
     postid:{
@@ -88,4 +105,4 @@ const DiscussionChatSchema=new mongoose.Schema({
 
 const DiscussionChat=mongoose.model("Chat",DiscussionChatSchema)
 
-module.exports={Posts,Discussion,DiscussionChat}
+module.exports={Posts,Discussion,DiscussionChat,User}

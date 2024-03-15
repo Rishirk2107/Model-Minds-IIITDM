@@ -3,7 +3,7 @@ const bodyParser=require('body-parser');
 const cors=require("cors");
 const axios = require('axios');
 const multer = require('multer');
-const {Posts,Discussion,DiscussionChat}=require("./backend/model/mongo")
+const {Posts,Discussion,DiscussionChat,User}=require("./backend/model/mongo")
 const {generateRandomString}=require("./backend/controller/generator");
 const dotenv=require("dotenv");
 const session=require("express-session")
@@ -60,14 +60,30 @@ app.post("/process_data",async(req,res)=>{
     res.json({"message":response.data.data})
 });
 
-app.post("/login",(req,res)=>{
+app.post("/login",async(req,res)=>{
     console.log(req.body);
-    res.json({"message":1})
+    const {username,password}=req.body;
+    const data=await User.findOne({$and:[{$or:[{username:username},{email:username}]},{password:password}]});
+    if(data){
+        req.session.username=data.username
+        res.json({"message":1})
+    }
+    else{
+        res.json({"message":0});
+    }
 })
 
-app.post("/signup",(req,res)=>{
+app.post("/signup",async(req,res)=>{
     console.log(req.body);
+    const {username,email,password}=req.body;
+    const newUser=new User({username:username,email:email,password:password});
+    const user=await newUser.save();
+    if(user){
     res.json({"message":1})
+    }
+    else{
+        res.json({"message":0});
+    }
 })
 
 app.post("/upload", upload.single("productImage"), async(req, res) => {

@@ -7,17 +7,19 @@ const Signup = () => {
     const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username,setusername]=useState('');
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/signup', {
+        username,
         email,
         password,
       });
       console.log(response.data);
       if(response.data.message==1){
-        navigate('/login');
+        navigate('/');
       }
     } catch (error) {
       console.error(error);
@@ -28,6 +30,13 @@ const Signup = () => {
     <div>
       <h2>Signup</h2>
       <form onSubmit={handleSignup}>
+      <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setusername(e.target.value)}
+          required
+        />
         <input
           type="email"
           placeholder="Email"

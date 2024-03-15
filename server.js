@@ -69,6 +69,11 @@ app.post("/upload", upload.single("productImage"), async(req, res) => {
 app.post("/posts",async(req,res)=>{
     const posts=await Posts.find({},{_id:0})
     res.json({posts:posts});
+});
+
+app.post("/discussion/:discussionid",(req,res)=>{
+    const params=req.params.discussionid;
+    
 })
 
 app.listen(5000,()=>{

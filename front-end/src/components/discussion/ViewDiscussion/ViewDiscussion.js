@@ -6,6 +6,8 @@ function ViewDiscussion() {
   const [topic, setTopic] = useState('Chat Topic'); // Topic displayed at the top
   const [username, setUsername] = useState(''); // User's username (optional)
 
+  const discussionid=window.location.href.split("/").pop()
+
   // Function to handle message submission
   const handleSubmitMessage = (e) => {
     e.preventDefault(); // Prevent default form submission behavior

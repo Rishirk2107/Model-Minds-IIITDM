@@ -43,4 +43,45 @@ const PostsSchema=new mongoose.Schema({
 
 const Posts=mongoose.model("Posts",PostsSchema);
 
+
+const DiscussionSchema=new mongoose.Schema({
+    discussionid:{
+        type:String,
+        required:true
+    },
+    discussiontopic:{
+        type:String,
+        required:true
+    },
+    createdBy:{
+        type:String,
+        required:true
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
+    }
+});
+
+
+const Discussion=mongoose.model("Discussion",DiscussionSchema);
+
+
+const DiscussionChatSchema=new mongoose.Schema({
+    discussionid:{
+        type:String,
+        required:true
+    },
+    sentby:{
+        type:String,
+        required:true
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
+    }
+})
+
+const DiscussionChat=mongoose.model("Chat",DiscussionChatSchema)
+
 module.exports=Posts

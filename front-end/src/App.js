@@ -32,7 +32,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/upload" element={<CreatePost/>}/>
             <Route path="/posts" element={<PostList/>}/>
-            <Route path="/discussion" element={<ViewDiscussion/>}/>
+            <Route path="/discussion/:id" element={<ViewDiscussion/>}/>
             <Route path="/discussion/lists" element={<DiscussionList/>}/>
             {/* <Apps/> */}
           </>

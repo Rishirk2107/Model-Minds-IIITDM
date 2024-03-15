@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 
 function DiscussionList() {
   const topics = [
-    { id: 1, name: 'React Basics', users: ['John', 'Jane'] },
-    { id: 2, name: 'JavaScript', users: ['Alice', 'Bob'] },
-    { id: 3, name: 'CSS Styling', users: ['Charlie', 'David'] },
+    { id: 1, name: 'React Basics', users: ['John', 'Jane'],topicid:"dkjnzlsdcl" },
+    { id: 2, name: 'JavaScript', users: ['Alice', 'Bob'],topicid:"dkjnzlsdcl" },
+    { id: 3, name: 'CSS Styling', users: ['Charlie', 'David'],topicid:"dkjnzlsdcl" },
   ];
 
   const [selectedTopic, setSelectedTopic] = useState(null);
 
   const handleTopicClick = (topic) => {
-    window.location.href="/discussion"
+    window.location.href="/discussion/"+topic.topicid;
   };
 
   return (

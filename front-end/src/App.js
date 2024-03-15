@@ -5,6 +5,7 @@ import Signup from './components/Signup/Signup';
 import Chat from './components/chat/Chat'
 import CreatePost from './components/Posts/CreatePost/CreatePost';
 import PostList from './components/Posts/ViewPosts/PostList';
+import ViewDiscussion from './components/discussion/ViewDiscussion/ViewDiscussion';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +31,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/upload" element={<CreatePost/>}/>
             <Route path="/posts" element={<PostList/>}/>
-            <Apps/>
+            <Route path="/discussion" element={<ViewDiscussion/>}/>
+            {/* <Apps/> */}
           </>
         )}
         {isLoggedIn && <Route path="/home" element={<Chat />} />}

@@ -1,0 +1,78 @@
+.story {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 100px); /* Adjust height as needed */
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px;
+  }
+  
+  .story header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .story header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .story header span {
+    font-weight: bold;
+  }
+  
+  .story .content {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .story .content h2 {
+    margin-bottom: 5px;
+  }
+  
+  .story .content p {
+    margin-bottom: 10px;
+  }
+  
+  .story .main-pic {
+    width: 20%;
+    object-fit: cover;
+  }
+  
+  .story footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .story footer span {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .story footer span i {
+    margin-right: 5px;
+    color: #ccc;
+  }
+  
+  .story footer span:hover i {
+    color: #000;
+  }
+  
+  /* Optional styles for the active story */
+  
+  .story-list .story-item.active .story {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  

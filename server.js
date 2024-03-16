@@ -113,9 +113,17 @@ app.post("/discussion/:discussionid",(req,res)=>{
 
 });
 
-app.post("/create/discussion",(req,res)=>{
+app.post("/create/discussion",async(req,res)=>{
     console.log(req.body);
-    res.json({"Message":req.body})
+    const user=req.session.username;
+    const creatediscussion=new Discussion({discussionid:generateRandomString(),discussiontopic:req.body.title,discussioncontent:req.body.details,createdBy:user});
+    const Discussion=await creatediscussion.save();
+    if(Discussion){
+        res.json({"Message":1});
+    }
+    else{
+        res.json({"Message":0});
+    }
 });
 
 app.listen(5000,()=>{

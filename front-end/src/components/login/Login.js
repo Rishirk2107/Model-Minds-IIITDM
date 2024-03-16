@@ -15,7 +15,7 @@ function Login() {
       const response = await axios.post('http://localhost:5000/login', { username, password });
       console.log(response.data)
       if (response.data.message == '1') {
-        navigate('/home');
+        navigate('/posts');
         // Optionally store login state for persistence (e.g., localStorage)
       } else {
         setErrorMessage('Invalid username or password');

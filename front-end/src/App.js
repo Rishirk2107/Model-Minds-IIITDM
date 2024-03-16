@@ -36,6 +36,7 @@ function App() {
             <Route path="/discussion/:id" element={<ViewDiscussion/>}/>
             <Route path="/discussion/lists" element={<DiscussionList/>}/>
             <Route path="/discussion/create" element={<DiscussionCreate/>}/>
+            <Route path="/chatbot" element={<Chat />} />
             {/* <Apps/> */}
           </>
         )}

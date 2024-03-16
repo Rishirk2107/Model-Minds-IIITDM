@@ -8,6 +8,7 @@ const {generateRandomString}=require("./backend/controller/generator");
 const dotenv=require("dotenv");
 const session=require("express-session")
 const MongoStore=require("connect-mongo");
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
@@ -20,19 +21,21 @@ const mongoStore = new MongoStore({
     collection: "user_session"
 });
 
-app.use(
-    session({
-        secret: process.env.USER_SECRET_KEY, // Replace with a strong, unique secret key
-        resave: false,
-        saveUninitialized: true,
-        store: mongoStore,
-        cookie: { secure: true, maxAge: 24 * 60 * 60 * 1000 } // Set cookie expiration to 24 hours (in milliseconds)
-    })
-);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
+
+// app.use(
+//     session({
+//         secret: process.env.USER_SECRET_KEY, // Replace with a strong, unique secret key
+//         resave: true,
+//         saveUninitialized: true,
+//         store: mongoStore,
+//         cookie: { secure: true, maxAge: 24 * 60 * 60 * 1000 } // Set cookie expiration to 24 hours (in milliseconds)
+//     })
+// );
+app.use(cookieParser());
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -65,7 +68,10 @@ app.post("/login",async(req,res)=>{
     const {username,password}=req.body;
     const data=await User.findOne({$and:[{$or:[{username:username},{email:username}]},{password:password}]});
     if(data){
-        req.session.username=data.username
+        console.log(data)
+        //req.session.username=data.username
+        res.cookie('username', data.username, { maxAge: 60 * 60 * 1000 });
+        //console.log(req.session.username);
         res.json({"message":1})
     }
     else{
@@ -115,9 +121,10 @@ app.post("/discussion/:discussionid",(req,res)=>{
 
 app.post("/create/discussion",async(req,res)=>{
     console.log(req.body);
-    const user=req.session.username;
+    const user = req.cookies.username;
+    console.log(user);
     const creatediscussion=new Discussion({discussionid:generateRandomString(),discussiontopic:req.body.title,discussioncontent:req.body.details,createdBy:user});
-    const Discussion=await creatediscussion.save();
+    const Discuss=await creatediscussion.save();
     if(Discussion){
         res.json({"Message":1});
     }

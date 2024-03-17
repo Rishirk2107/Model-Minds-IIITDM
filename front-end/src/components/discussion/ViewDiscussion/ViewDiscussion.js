@@ -23,7 +23,7 @@ function ViewDiscussion() {
 
   // Fetch username from an endpoint
   useEffect(() => {
-    axios.post('http://localhost:5000/username')
+    axios.post('http://13.235.245.167:5000/username')
       .then(response => {
         setUsername(response.data.username);
       })

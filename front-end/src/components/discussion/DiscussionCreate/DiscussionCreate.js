@@ -24,7 +24,7 @@ function DiscussionCreate() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/create/discussion', {
+      const response = await axios.post('http://13.235.245.167:5000/create/discussion', {
         title: topicTitle,
         details: topicDetails,
       });

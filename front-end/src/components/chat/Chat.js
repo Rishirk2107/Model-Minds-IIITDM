@@ -9,7 +9,7 @@ function ChatScreen() {
     setMessages([...messages, { text: message, isUser: true }]);
     setMessage('');
 
-    const url = 'http://localhost:5000/process_data'; // Update with your Flask server URL
+    const url = 'http://13.235.245.167:5000/process_data'; // Update with your Flask server URL
 
     try {
       const response = await axios.post(url, { name: message });

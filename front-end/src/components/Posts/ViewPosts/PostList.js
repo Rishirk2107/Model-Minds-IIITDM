@@ -12,7 +12,7 @@ const PostList = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/posts');
+        const response = await axios.post('http://13.235.245.167:5000/posts');
         console.log(response.data.posts);
         setStories(response.data.posts); // Assuming the response contains an array of posts
       } catch (error) {

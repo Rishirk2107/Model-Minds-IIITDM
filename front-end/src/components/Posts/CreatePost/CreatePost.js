@@ -33,7 +33,7 @@ function CreatePost() {
       formData.append('content', content);
       formData.append('hashtags', hashtags);
 
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response = await axios.post('http://13.235.245.167:5000/upload', formData, {
         headers: {
           // Add any necessary headers for authentication or content type, if applicable
           'Content-Type': 'multipart/form-data', // Important for file uploads

@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/login', { username, password });
+      const response = await axios.post('http://13.235.245.167:5000/login', { username, password });
       console.log(response.data)
       if (response.data.message == '1') {
         navigate('/home');

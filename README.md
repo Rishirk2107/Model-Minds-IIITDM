@@ -3,17 +3,17 @@
 Life Redemption is a project aimed at helping people who are addicted to drugs. It provides a community platform where individuals can share about living a drug-free life, and includes a chatbot for discussions about symptoms, positive stories, and the negative consequences of drug use. Additionally, there's a discussion page where recovering addicts can ask questions and receive answers from those who have overcome addiction.
 
 # Team Name:
-## Model Minds
+MODEL MINDS
 
 # Team Members:
 1. Sachin A
 2. Rishi Kumar S
 
 ## Demo Video
-[Insert link to demo video here]
+![Video](./vDemo_Video/Demo.mp4)
 
 ## Repository
-[Insert link to GitHub repository here]
+https://github.com/Rishirk2107/Model-Minds-IIITDM.git
 
 ## Presentation
 [Presentation slides can be found in the repository]

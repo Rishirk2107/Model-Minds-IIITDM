@@ -19,7 +19,8 @@ Life Redemption is a project aimed at helping people who are addicted to drugs. 
 [Presentation slides can be found in the repository]
 
 ## Screenshots
-[Insert screenshots, posters, illustrations, or flowcharts here]
+![Screenshot](Screenshot/Screenshot1.png)
+
 
 #Tech Stack Used:
 1. Node.js

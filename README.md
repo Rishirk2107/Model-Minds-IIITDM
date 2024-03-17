@@ -16,7 +16,7 @@ MODEL MINDS
 https://github.com/Rishirk2107/Model-Minds-IIITDM.git
 
 ## Presentation
-[Presentation slides can be found in the repository]
+https://docs.google.com/presentation/d/1WvNSJ7YydOG8yk-zi8XivZVxkTM28c1ACtTr-6pROqg/edit?usp=sharing
 
 ## Screenshots
 ![Screenshot](Screenshots/Screenshot-1.png)

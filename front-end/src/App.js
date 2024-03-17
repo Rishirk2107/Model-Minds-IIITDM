@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Login from './components/login/Login';
 import Signup from './components/Signup/Signup';
@@ -26,22 +26,51 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        {!isLoggedIn && (
-          <>
-            <Route path="/" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/upload" element={<CreatePost/>}/>
-            <Route path="/posts" element={<PostList/>}/>
-            <Route path="/discussion/:id" element={<ViewDiscussion/>}/>
-            <Route path="/discussion/lists" element={<DiscussionList/>}/>
-            <Route path="/discussion/create" element={<DiscussionCreate/>}/>
-            <Route path="/chatbot" element={<Chat />} />
-            {/* <Apps/> */}
-          </>
-        )}
-        {isLoggedIn && <Route path="/home" element={<Chat />} />}
-      </Routes>
+      <div>
+        <nav>
+          <ul>
+            {isLoggedIn && (
+              <>
+                 <Route path="/home" element={<Chat />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/createpost" element={<CreatePost />} />
+              <Route path="/postlist" element={<PostList />} />
+              <Route path="/discussion/list" element={<DiscussionList />} />
+              <Route path="/discussion/create" element={<DiscussionCreate />} />
+              <Route path="/discussion/:id" element={<ViewDiscussion />} />
+                {/* You can add more links here */}
+              </>
+            )}
+          </ul>
+        </nav>
+
+        <Routes>
+          {!isLoggedIn && (
+            <>
+              <Route path="/" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/home" element={<Chat />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/createpost" element={<CreatePost />} />
+              <Route path="/postlist" element={<PostList />} />
+              <Route path="/discussion/list" element={<DiscussionList />} />
+              <Route path="/discussion/create" element={<DiscussionCreate />} />
+              <Route path="/discussion/:id" element={<ViewDiscussion />} />
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <Route path="/home" element={<Chat />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/createpost" element={<CreatePost />} />
+              <Route path="/postlist" element={<PostList />} />
+              <Route path="/discussion/list" element={<DiscussionList />} />
+              <Route path="/discussion/create" element={<DiscussionCreate />} />
+              <Route path="/discussion/:id" element={<ViewDiscussion />} />
+            </>
+          )}
+        </Routes>
+      </div>
     </Router>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Assuming you're using Axios for HTTP requests
+import './CreatePost.css';
 
 function CreatePost() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -54,34 +55,36 @@ function CreatePost() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="userid">User ID:</label>
-        <input type="text" id="userid" name="userid" value={userid} onChange={(e) => setUserid(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="content">Content:</label>
-        <textarea id="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="hashtags">Hashtags (comma-separated):</label>
-        <input type="text" id="hashtags" name="hashtags" value={hashtags} onChange={(e) => setHashtags(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="productImage">Product Image:</label>
-        <input type="file" id="productImage" name="productImage" onChange={handleFileChange} />
-      </div>
-      <div>
-        <button type="submit" disabled={uploadStatus === 'uploading'}>
-          {uploadStatus === 'idle' ? 'Create Post' : uploadStatus === 'uploading' ? 'Creating Post...' : 'Post Creation Failed'}
-        </button>
-      </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </form>
+    <div className="container mt-5">
+      <form onSubmit={handleSubmit} className="custom-form">
+        <div className="mb-3">
+          <label htmlFor="userid" className="form-label">User ID:</label>
+          <input type="text" className="form-control" id="userid" name="userid" value={userid} onChange={(e) => setUserid(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">Title:</label>
+          <input type="text" className="form-control" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="content" className="form-label">Content:</label>
+          <textarea className="form-control" id="content" name="content" value={content} onChange={(e) => setContent(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="hashtags" className="form-label">Hashtags (comma-separated):</label>
+          <input type="text" className="form-control" id="hashtags" name="hashtags" value={hashtags} onChange={(e) => setHashtags(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="productImage" className="form-label">Product Image:</label>
+          <input type="file" className="form-control" id="productImage" name="productImage" onChange={handleFileChange} />
+        </div>
+        <div className="mb-3">
+          <button type="submit" className="btn btn-primary" disabled={uploadStatus === 'uploading'}>
+            {uploadStatus === 'idle' ? 'Create Post' : uploadStatus === 'uploading' ? 'Creating Post...' : 'Post Creation Failed'}
+          </button>
+        </div>
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+      </form>
+    </div>
   );
 }
 

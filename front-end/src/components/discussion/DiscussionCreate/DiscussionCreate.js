@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import axios
+import './DiscussionCreate.css'; 
 
 function DiscussionCreate() {
   const [topicTitle, setTopicTitle] = useState('');
@@ -38,29 +39,44 @@ function DiscussionCreate() {
   };
 
   return (
-    <div className="create-topic-page">
-      <h1>Create a Topic</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="topic-title">Topic Title:</label>
-        <input
-          type="text"
-          id="topic-title"
-          value={topicTitle}
-          onChange={handleTopicTitleChange}
-          placeholder="Enter the topic title"
-          required
-        />
-        <label htmlFor="topic-details">Topic Details:</label>
-        <textarea
-          id="topic-details"
-          value={topicDetails}
-          onChange={handleTopicDetailsChange}
-          placeholder="Enter detailed information about the topic"
-          required
-        />
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <button type="submit">Create Topic</button>
-      </form>
+    <div className="container discussion-create-container">
+      <div className="row justify-content-center mt-5">
+        <div className="col-md-8">
+          <div className="card">
+            <div className="card-body">
+              <h1 className="card-title">Create a Topic</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="topic-title">Topic Title:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="topic-title"
+                    value={topicTitle}
+                    onChange={handleTopicTitleChange}
+                    placeholder="Enter the topic title"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="topic-details">Topic Details:</label>
+                  <textarea
+                    className="form-control"
+                    id="topic-details"
+                    value={topicDetails}
+                    onChange={handleTopicDetailsChange}
+                    placeholder="Enter detailed information about the topic"
+                    required
+                  />
+                </div>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                <br></br>
+                <button type="submit" className="btn btn-primary">Create Topic</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

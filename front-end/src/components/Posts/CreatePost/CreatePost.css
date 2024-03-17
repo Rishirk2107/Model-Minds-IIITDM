@@ -1,0 +1,24 @@
+.custom-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-form label {
+    font-weight: bold;
+  }
+  
+  .custom-form button[type="submit"] {
+    width: 100%;
+  }
+  
+  .custom-form button[type="submit"]:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .custom-form .text-danger {
+    margin-top: 10px;
+  }
+  

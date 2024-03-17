@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-//import "./Chat.css"
 
 function ChatScreen() {
   const [message, setMessage] = useState('');
@@ -29,21 +28,24 @@ function ChatScreen() {
   };
 
   return (
-    <div>
-      <h1>Chatbot</h1>
-      <div style={{ height: '400px', overflowY: 'scroll' }}>
+    <div className="container">
+      <h1 className="mt-5 mb-4 text-center">HopeGuide</h1>
+      <div className="chat-box p-3" style={{ height: '400px', overflowY: 'scroll', background: '#f0f0f0', borderRadius: '10px' }}>
         {messages.map((msg, index) => (
           <ChatMessage key={index} text={msg.text} isUser={msg.isUser} />
         ))}
       </div>
-      <div>
+      <div className="input-group mt-4">
         <input
           type="text"
+          className="form-control input-sm"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
         />
-        <button onClick={sendMessage}>Send</button>
+        <div className="input-group-append">
+          <button className="btn btn-primary" type="button" onClick={sendMessage}>Send</button>
+        </div>
       </div>
     </div>
   );
@@ -51,8 +53,10 @@ function ChatScreen() {
 
 function ChatMessage({ text, isUser }) {
   return (
-    <div style={{ textAlign: isUser ? 'left' : 'right', margin: '10px 0', padding: '10px', borderRadius: '8px', background: isUser ? '#ddd' : 'blue' }}>
-      {text}
+    <div className={`message-container ${isUser ? 'user-message' : 'bot-message'}`}>
+      <div className="message p-2" style={{ borderRadius: '8px', background: isUser ? '#e5e5ff' : '#c2f0c2' }}>
+        {text}
+      </div>
     </div>
   );
 }

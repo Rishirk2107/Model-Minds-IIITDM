@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import "./ViewDiscussion.css"
 import axios from 'axios';
+import "./ViewDiscussion.css"
 
 function ViewDiscussion() {
   const [messages, setMessages] = useState([]); // Array to store chat messages
-  const [topic, setTopic] = useState('Chat Topic'); // Topic displayed at the top
+  const [topic, setTopic] = useState('Chat Topic'); // Topic displayed at the tops
   const [username, setUsername] = useState(''); // User's username (optional)
 
-  const discussionid=window.location.href.split("/").pop()
+  const discussionid = window.location.href.split("/").pop()
 
   // Function to handle message submission
   const handleSubmitMessage = (e) => {
@@ -21,25 +21,32 @@ function ViewDiscussion() {
     messageInput.current.value = ''; // Clear input field after sending
   };
 
+  // Fetch username from an endpoint
+  useEffect(() => {
+    axios.post('http://localhost:5000/username')
+      .then(response => {
+        setUsername(response.data.username);
+      })
+      .catch(error => {
+        console.error('Error fetching username:', error);
+      });
+  }, []); // Run the effect only once, when the component mounts
+
   // Simulate receiving messages from other users (replace with actual backend integration)
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const receivedMessage = {
-        sender: 'Other User', // Name of the other user
-        content: 'This is a message from another user.',
-        isSentByUser: false,
-      };
-      setMessages([...messages, receivedMessage]);
-    }, 2000); // Simulate receiving messages every 2 seconds
-
-    return () => clearInterval(intervalId); // Cleanup function to clear the interval
-  }, [messages]); // Run the effect only when messages state changes
+    const receivedMessage = {
+      sender: 'Star_boy_89', // Name of the other user
+      content: 'Please help me to overcome drug addiction',
+      isSentByUser: false,
+    };
+    setMessages([...messages, receivedMessage]);
+  }, []); // Run the effect only once, when the component mounts
 
   const messageInput = React.createRef(); // Reference for the message input field
 
   return (
-    <div className="chat-app">
-      <h1 className="chat-topic">{topic}</h1>
+    <div className="container py-5">
+      <h1 className="text-center mb-4">{topic}</h1>
       <div className="chat-container">
         {messages.map((message, index) => (
           <div
@@ -53,26 +60,21 @@ function ViewDiscussion() {
           </div>
         ))}
       </div>
-      <form className="chat-form" onSubmit={handleSubmitMessage}>
-        {username ? null : ( // Only display username input if not set
-          <div className="username-input">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-            />
-          </div>
-        )}
-        <input
-          type="text"
-          ref={messageInput}
-          placeholder="Type your message..."
-          required
-        />
-        <button type="submit">Send</button>
+      <form className="chat-form mt-4 row" onSubmit={handleSubmitMessage}>
+        <div className="col-md-6 mb-3">
+          <br></br>
+          <input
+            type="text"
+            ref={messageInput}
+            className="form-control"
+            placeholder="Type your message..."
+            required
+          />
+        </div>
+        <div className="col-md-3 mb-3">
+          <br></br>
+          <button type="submit" className="btn btn-primary btn-block">Send</button>
+        </div>
       </form>
     </div>
   );

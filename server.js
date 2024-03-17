@@ -8,12 +8,10 @@ const {generateRandomString}=require("./backend/controller/generator");
 const dotenv=require("dotenv");
 const session=require("express-session")
 const MongoStore=require("connect-mongo");
-const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
 const app=express();
-let user;
 
 const mongoStore = new MongoStore({
     mongoUrl: process.env.MONGO_URI, // Replace with connection string
@@ -21,22 +19,21 @@ const mongoStore = new MongoStore({
     dbName: 'life_redemption', // Database name (same as connection string)
     collection: "user_session"
 });
+let user;
 
+app.use(
+    session({
+        secret: process.env.USER_SECRET_KEY, // Replace with a strong, unique secret key
+        resave: false,
+        saveUninitialized: true,
+        store: mongoStore,
+        cookie: { secure: true, maxAge: 24 * 60 * 60 * 1000 } // Set cookie expiration to 24 hours (in milliseconds)
+    })
+);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
-
-// app.use(
-//     session({
-//         secret: process.env.USER_SECRET_KEY, // Replace with a strong, unique secret key
-//         resave: true,
-//         saveUninitialized: true,
-//         store: mongoStore,
-//         cookie: { secure: true, maxAge: 24 * 60 * 60 * 1000 } // Set cookie expiration to 24 hours (in milliseconds)
-//     })
-// );
-app.use(cookieParser());
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -69,11 +66,8 @@ app.post("/login",async(req,res)=>{
     const {username,password}=req.body;
     const data=await User.findOne({$and:[{$or:[{username:username},{email:username}]},{password:password}]});
     if(data){
-        console.log(data)
-        //req.session.username=data.username
-        res.cookie('username', data.username, { maxAge: 60 * 60 * 1000 });
+        req.session.username=data.username
         user=data.username
-        //console.log(req.session.username);
         res.json({"message":1})
     }
     else{
@@ -116,22 +110,26 @@ app.post("/posts",async(req,res)=>{
     res.json({posts:posts});
 });
 
-app.post("/discussion/:discussionid",(req,res)=>{
-    const params=req.params.discussionid;
+app.post("/discussion/list",async(req,res)=>{
+    console.log(req.body);
+    const posts=await Discussion.find({},{_id:0})
+    console.log(posts);
+    res.json({posts:posts});
 });
 
-app.post("/create/discussion",async(req,res)=>{
-    console.log(req.body);
-    console.log(user);
-    const creatediscussion=new Discussion({discussionid:generateRandomString(),discussiontopic:req.body.title,discussioncontent:req.body.details,createdBy:user});
-    const Discuss=await creatediscussion.save();
-    if(Discussion){
-        res.json({"Message":1});
-    }
-    else{
-        res.json({"Message":0});
-    }
+app.post("/discussion/:discussionid",(req,res)=>{
+    const params=req.params.discussionid;
+
 });
+
+app.post("/create/discussion",(req,res)=>{
+    console.log(req.body);
+    res.json({"Message":req.body})
+});
+
+app.post("/username",(req,res)=>{
+    res.json({username:user});
+})
 
 app.listen(5000,()=>{
     console.log("Server running at http://localhost:5000/");

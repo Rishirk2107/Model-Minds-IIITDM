@@ -8,46 +8,15 @@ import PostList from './components/Posts/ViewPosts/PostList';
 import ViewDiscussion from './components/discussion/ViewDiscussion/ViewDiscussion';
 import DiscussionList from './components/discussion/DiscussionList/DiscussionList';
 import DiscussionCreate from './components/discussion/DiscussionCreate/DiscussionCreate';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check for existing login state (optional, for persistence)
-    const storedUser = localStorage.getItem('loggedInUser');
-    if (storedUser) {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
-
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            {isLoggedIn && (
-              <>
-                 <Route path="/home" element={<Chat />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/createpost" element={<CreatePost />} />
-              <Route path="/postlist" element={<PostList />} />
-              <Route path="/discussion/list" element={<DiscussionList />} />
-              <Route path="/discussion/create" element={<DiscussionCreate />} />
-              <Route path="/discussion/:id" element={<ViewDiscussion />} />
-                {/* You can add more links here */}
-              </>
-            )}
-          </ul>
-        </nav>
-
+      <Navbar />
         <Routes>
-          {!isLoggedIn && (
             <>
-              <Route path="/" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+              <Route path="/" element={<Login/>} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/home" element={<Chat />} />
               <Route path="/chat" element={<Chat />} />
@@ -57,20 +26,9 @@ function App() {
               <Route path="/discussion/create" element={<DiscussionCreate />} />
               <Route path="/discussion/:id" element={<ViewDiscussion />} />
             </>
-          )}
-          {isLoggedIn && (
-            <>
-              <Route path="/home" element={<Chat />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/createpost" element={<CreatePost />} />
-              <Route path="/postlist" element={<PostList />} />
-              <Route path="/discussion/list" element={<DiscussionList />} />
-              <Route path="/discussion/create" element={<DiscussionCreate />} />
-              <Route path="/discussion/:id" element={<ViewDiscussion />} />
-            </>
-          )}
+         
         </Routes>
-      </div>
+      
     </Router>
   );
 }

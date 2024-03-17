@@ -13,6 +13,8 @@ MODEL MINDS
 
 https://github.com/Rishirk2107/Model-Minds-IIITDM/assets/120192740/0cf98b8b-d26a-4ff8-8922-35e8f1db6c52
 
+## Demo Website(Using AWS EC2)
+http://13.235.245.167:3000/
 
 ## Repository
 
@@ -38,6 +40,8 @@ https://docs.google.com/presentation/d/1WvNSJ7YydOG8yk-zi8XivZVxkTM28c1ACtTr-6pR
 4. Pytorch
 5. Tensorflow
 6. Transformers
+7. MongoDB
+8. AWS Services
 
 ## Running the Project Locally
 To run the project locally, follow these steps:

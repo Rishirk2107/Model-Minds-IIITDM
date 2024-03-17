@@ -10,7 +10,7 @@ MODEL MINDS
 2. Rishi Kumar S
 
 ## Demo Video
-![Video](./vDemo_Video/Demo.mp4)
+![Video](./Demo_Video/Demo.mp4)
 
 ## Repository
 https://github.com/Rishirk2107/Model-Minds-IIITDM.git

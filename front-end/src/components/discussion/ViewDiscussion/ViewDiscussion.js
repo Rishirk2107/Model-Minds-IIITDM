@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./ViewDiscussion.css"
+import axios from 'axios';
 
 function ViewDiscussion() {
   const [messages, setMessages] = useState([]); // Array to store chat messages

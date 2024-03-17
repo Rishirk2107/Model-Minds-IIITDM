@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 dotenv.config();
 
 const app=express();
+let user;
 
 const mongoStore = new MongoStore({
     mongoUrl: process.env.MONGO_URI, // Replace with connection string
@@ -71,6 +72,7 @@ app.post("/login",async(req,res)=>{
         console.log(data)
         //req.session.username=data.username
         res.cookie('username', data.username, { maxAge: 60 * 60 * 1000 });
+        user=data.username
         //console.log(req.session.username);
         res.json({"message":1})
     }
@@ -116,12 +118,10 @@ app.post("/posts",async(req,res)=>{
 
 app.post("/discussion/:discussionid",(req,res)=>{
     const params=req.params.discussionid;
-
 });
 
 app.post("/create/discussion",async(req,res)=>{
     console.log(req.body);
-    const user = req.cookies.username;
     console.log(user);
     const creatediscussion=new Discussion({discussionid:generateRandomString(),discussiontopic:req.body.title,discussioncontent:req.body.details,createdBy:user});
     const Discuss=await creatediscussion.save();

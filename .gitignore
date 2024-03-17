@@ -76,7 +76,6 @@ fine-tuned-flan-t5/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local

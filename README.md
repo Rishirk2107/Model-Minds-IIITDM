@@ -12,6 +12,10 @@ MODEL MINDS
 ## Demo Video
 ![Video](./Demo_Video/Demo.mp4)
 
+https://github.com/Rishirk2107/Model-Minds-IIITDM/assets/120192740/0cf98b8b-d26a-4ff8-8922-35e8f1db6c52
+
+
+
 ## Repository
 https://github.com/Rishirk2107/Model-Minds-IIITDM.git
 

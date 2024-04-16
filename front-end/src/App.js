@@ -9,9 +9,11 @@ import ViewDiscussion from './components/discussion/ViewDiscussion/ViewDiscussio
 import DiscussionList from './components/discussion/DiscussionList/DiscussionList';
 import DiscussionCreate from './components/discussion/DiscussionCreate/DiscussionCreate';
 import Navbar from './components/Navbar/Navbar';
+import Provider from './Context/Provider';
 
 function App() {
   return (
+    <Provider>
     <Router>
       <Navbar />
         <Routes>
@@ -30,6 +32,7 @@ function App() {
         </Routes>
       
     </Router>
+    </Provider>
   );
 }
 

@@ -131,6 +131,12 @@ app.post("/username",(req,res)=>{
     res.json({username:user});
 })
 
+app.get('*',(req,res,next)=>{
+    res.status(200).json({
+      message:'bad request'
+    })
+})
+
 app.listen(5000,()=>{
     console.log("Server running at http://localhost:5000/");
 });

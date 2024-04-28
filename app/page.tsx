@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         treat addiction.
       </p>
       <p className="mb-4">
-        Whether you're struggling with addiction or want to help someone who is, Life Redemption is
+        Whether you re struggling with addiction or want to help someone who is, Life Redemption is
         here to provide support and guidance.
       </p>
       <p className="mb-4">

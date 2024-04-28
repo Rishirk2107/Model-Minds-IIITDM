@@ -1,0 +1,14 @@
+.question{
+    border-style: solid;
+    border-width: medium;
+    border-radius: 10px;
+    background-color: skyblue;
+}
+
+.response{
+    border-style: solid;
+    border-width: medium;
+    border-radius: 10px;
+    background-color: rgb(97, 196, 97);
+    text-align: right;
+}
